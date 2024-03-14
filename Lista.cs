@@ -111,5 +111,25 @@ namespace estrutura2trabalho2
                 Console.WriteLine(ex);
             }
         }
+         public  int ContarElementos()
+ {
+     int numNodos = 0;
+     if(this.Root == null)
+     {
+         return 0;
+     }
+     
+     if(this.Root.NextNodo == null)
+     {
+         return 1;
+     }
+     Nodo<T>? nextNodo = this.Root;
+     while (nextNodo != null)
+     {
+         nextNodo = nextNodo?.NextNodo;
+         numNodos = numNodos+1;
+     }
+     return numNodos;
+       }
     }
 }
