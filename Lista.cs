@@ -131,5 +131,18 @@ namespace estrutura2trabalho2
      }
      return numNodos;
        }
+       public void InserirNoInicio(T Value)
+{
+    if(this.Root == null)
+    {
+        this.Root = new Nodo<T>(Value);
+    }
+    else
+    {
+        Nodo<T> auxNodo = this.Root;
+        auxNodo.NextNodo = this.Root;
+        this.Root = auxNodo;
+    }
+}
     }
 }
