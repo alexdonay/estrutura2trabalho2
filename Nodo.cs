@@ -15,9 +15,28 @@ namespace estrutura2trabalho2
         {
             return Value.ToString();
         }
-        public Boolean Comparer<T>(T value) 
+        public Boolean EqualsValue<T>(T value) 
         {
             return EqualityComparer<T>.Equals(value, this.Value);
+        }
+        public bool Equals(Nodo<T> nodo)
+        {
+            bool valueEquals = EqualityComparer<T>.Default.Equals(this.Value, nodo.Value);
+            bool nextNodoEquals = (this.NextNodo == null && nodo.NextNodo == null) || (this.NextNodo != null && nodo.NextNodo != null && EqualityComparer<T>.Default.Equals(this.NextNodo.Value, nodo.NextNodo.Value));
+            bool lastNodoEquals = (this.LastNodo == null && nodo.LastNodo == null) || (this.LastNodo != null && nodo.LastNodo != null && EqualityComparer<T>.Default.Equals(this.LastNodo.Value, nodo.LastNodo.Value));
+
+            return valueEquals && nextNodoEquals && lastNodoEquals;
+        }
+        public bool Greater<T>(T value)
+        {
+            if (value is IComparable<T>)
+            {
+                return ((IComparable<T>)this.Value).CompareTo(value) > 0;
+            }
+            else
+            {
+                throw new ArgumentException("Tipo T não implementa a interface IComparable<T>");
+            }
         }
         public Nodo() { }
         public Nodo(T value)
